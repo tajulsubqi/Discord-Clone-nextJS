@@ -1,3 +1,4 @@
+"use client"
 import { UploadDropzone } from "@/lib/uploadthing"
 import "@uploadthing/react/styles.css"
 import { X } from "lucide-react"
@@ -15,7 +16,13 @@ const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
   if (value && fileType !== "pdf") {
     return (
       <div className="relative h-20 w-20">
-        <Image src={value} alt="Upload" className="rounded-full" fill />
+        <Image
+          src={value}
+          alt="Upload"
+          className="rounded-full object-cover"
+          fill
+          objectFit="cover"
+        />
         <button
           className="absolute top-0 right-0 bg-rose-500 text-white p-1 shadow-sm"
           type="button"
@@ -32,7 +39,7 @@ const FileUpload = ({ onChange, value, endpoint }: FileUploadProps) => {
       <UploadDropzone
         endpoint={endpoint}
         onClientUploadComplete={(res) => onChange(res?.[0]?.url)}
-        onUploadError={(error) => console.error("Upload Error", error)}
+        onUploadError={(error: Error) => console.error("Upload Error", error)}
       />
     </div>
   )
