@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -34,7 +28,7 @@ model Server {
   imageUrl   String
   inviteCode String
 
-  profileId String
+  profileId String  @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
   createdAt DateTime  @default(now())
@@ -55,10 +49,10 @@ model Member {
   id   String     @id @default(auto()) @map("_id") @db.ObjectId
   role MemberRole @default(GUEST)
 
-  profileId String
+  profileId String  @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  serverId String
+  serverId String @db.ObjectId
   server   Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
@@ -79,10 +73,10 @@ model Channel {
   name String
   type ChannelType @default(TEXT)
 
-  profileId String
+  profileId String  @db.ObjectId
   profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
 
-  serverId String
+  serverId String @db.ObjectId
   server   Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())

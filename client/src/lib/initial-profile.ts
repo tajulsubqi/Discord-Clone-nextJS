@@ -19,6 +19,7 @@ export const initialProfile = async () => {
   if (profile) {
     return profile
   }
+  console.log(profile)
 
   const newProfile = await db.profile.create({
     data: {

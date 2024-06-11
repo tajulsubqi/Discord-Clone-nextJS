@@ -7,5 +7,5 @@ declare global {
 export const db = new PrismaClient()
 
 if (process.env.NODE_ENV !== "production") {
-  global.prisma = db
+  globalThis.prisma = db
 }
