@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from "uuid"
 import { NextResponse } from "next/server"
 import { MemberRole } from "@prisma/client"
 
@@ -8,6 +7,7 @@ import { db } from "@/lib/db/db"
 export async function POST(req: Request) {
   try {
     const { name, imageUrl } = await req.json()
+
     const profile = await currentProfile()
     if (!profile) return new NextResponse("Unauthorized", { status: 401 })
 
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
         profileId: profile.id,
         name,
         imageUrl,
-        inviteCode: uuidv4(),
+        inviteCode: Math.random().toString(36).slice(2),
         channels: {
           create: {
             name: "general",

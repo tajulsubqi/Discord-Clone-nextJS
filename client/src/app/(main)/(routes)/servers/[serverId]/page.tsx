@@ -1,12 +1,5 @@
-import { UserButton } from "@clerk/nextjs"
-
 const ServerPage = () => {
-  return (
-    <div>
-      <h1>ServerId Page</h1>
-      <UserButton afterSignOutUrl="/" />
-    </div>
-  )
+  return <div>server page</div>
 }
 
 export default ServerPage
