@@ -34,7 +34,14 @@ const NavigationItem = ({ id, imageUrl, name }: NavigationItemProps) => {
             params?.serverId === id && "bg-primary/10 text-primary rounded-[16px]",
           )}
         >
-          <Image fill src={imageUrl} alt={name} objectFit="cover" />
+          <Image
+            width={48}
+            height={48}
+            priority
+            src={imageUrl}
+            alt={name}
+            className="object-cover"
+          />
         </div>
       </button>
     </ActionTooltip>
