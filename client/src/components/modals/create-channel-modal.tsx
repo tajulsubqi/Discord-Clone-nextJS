@@ -70,7 +70,6 @@ const CreateChannelModal = () => {
       })
 
       const response = await axios.post(url, data)
-      console.log(response.data)
 
       router.refresh()
       form.reset()

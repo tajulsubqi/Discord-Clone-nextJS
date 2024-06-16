@@ -27,8 +27,8 @@ model Server {
   name       String
   imageUrl   String
   inviteCode String @unique
-
   profileId String  @db.ObjectId
+
   profile   Profile @relation(fields: [profileId], references: [id])
 
   createdAt DateTime  @default(now())
