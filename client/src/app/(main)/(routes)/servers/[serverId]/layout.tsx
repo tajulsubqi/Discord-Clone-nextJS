@@ -31,8 +31,6 @@ const ServerIdLayout = async ({ children, params }: ServerIdLayoutProps) => {
     return redirect("/")
   }
 
-  console.log("SERVERID", server)
-
   return (
     <div className="h-full">
       <div className="hidden md:flex h-full w-60 z-20 flex-col fixed inset-y-0">
