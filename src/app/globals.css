@@ -8,6 +8,21 @@ body,
   height: 100%;
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+  height: 5px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
