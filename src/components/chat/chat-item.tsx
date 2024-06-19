@@ -6,18 +6,18 @@ import { Member, MemberRole, Profile } from "@prisma/client"
 import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useParams, useRouter } from "next/navigation"
+import { cn } from "@/lib/utils"
+import axios from "axios"
+import { useModal } from "@/hooks/use-modal-store"
+import { useEffect, useState } from "react"
+import { Form, FormControl, FormField, FormItem } from "../ui/form"
+import { useForm } from "react-hook-form"
 
 import UserAvatar from "@/components/ui/user-avatar"
 import ActionTooltip from "@/components/ui/action-tooltip"
-import { useEffect, useState } from "react"
-import { cn } from "@/lib/utils"
-import { useForm } from "react-hook-form"
-import { Form, FormControl, FormField, FormItem } from "../ui/form"
-import { Input } from "../ui/input"
-import { Button } from "../ui/button"
-import axios from "axios"
-import { useRouter } from "next/navigation"
-import { useModal } from "@/hooks/use-modal-store"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 interface ChatItemProps {
   id: string
@@ -57,9 +57,18 @@ export const ChatItem = ({
   socketQuery,
 }: ChatItemProps) => {
   const router = useRouter()
+  const params = useParams()
 
   const [isEditing, setIsEditing] = useState(false)
   const { onOpen } = useModal()
+
+  const onMemberClick = () => {
+    if (member.id === currentMember.id) {
+      return
+    }
+
+    router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
+  }
 
   useEffect(() => {
     const handleKeyDown = (e: any) => {
@@ -69,7 +78,6 @@ export const ChatItem = ({
     }
 
     window.addEventListener("keydown", handleKeyDown)
-
     return () => window.removeEventListener("keydown", handleKeyDown)
   }, [])
 
@@ -103,7 +111,7 @@ export const ChatItem = ({
     form.reset({
       content: content,
     })
-  }, [content])
+  }, [content, form])
 
   const fileType = fileUrl?.split(".").pop()
 
@@ -118,14 +126,20 @@ export const ChatItem = ({
   return (
     <div className="relative group flex items-center hover:bg-black/5 p-4 transition w-full">
       <div className="group flex gap-x-2 items-start w-full">
-        <div className="cursor-pointer hover:drop-shadow-md transition">
+        <div
+          onClick={onMemberClick}
+          className="cursor-pointer hover:drop-shadow-md transition"
+        >
           <UserAvatar src={member.profile.imageUrl} />
         </div>
 
         <div className="flex flex-col w-full">
           <div className="flex items-center gap-x-2 ">
             <div className="flex items-center gap-x-2">
-              <p className="font-semibold text-sm hover:underline cursor-pointer">
+              <p
+                onClick={onMemberClick}
+                className="font-semibold text-sm hover:underline cursor-pointer"
+              >
                 {member.profile.name}
               </p>
 
@@ -148,6 +162,7 @@ export const ChatItem = ({
                 alt={content}
                 width={100}
                 height={100}
+                priority
                 className="object-cover w-full h-full"
               />
             </Link>

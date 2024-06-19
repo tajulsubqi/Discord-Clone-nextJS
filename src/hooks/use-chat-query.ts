@@ -29,8 +29,16 @@ export const useChatQuery = ({
       { skipNull: true },
     )
 
-    const res = await fetch(url)
-    return res.json()
+    try {
+      const res = await fetch(url)
+      if (!res.ok) {
+        throw new Error(`Error fetching messages: ${res.statusText}`)
+      }
+      return res.json()
+    } catch (error) {
+      console.error("Failed to fetch messages", error)
+      throw error
+    }
   }
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
@@ -38,7 +46,8 @@ export const useChatQuery = ({
       queryKey: [queryKey],
       queryFn: fetchMessages,
       getNextPageParam: (lastPage) => lastPage?.nextCursor,
-      refetchInterval: isConnected ? false : 1000,
+      // refetchInterval: isConnected ? false : 1000,
+      refetchInterval: 1000,
       initialPageParam: undefined,
     })
 
