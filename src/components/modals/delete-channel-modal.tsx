@@ -3,8 +3,8 @@ import { useModal } from "@/hooks/use-modal-store"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import qs from "query-string"
-import { useState } from "react"
-import { Button } from "../ui/button"
+import { useEffect, useState } from "react"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -12,7 +12,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog"
+} from "@/components/ui/dialog"
 
 const DeleteChannelModal = () => {
   const { onClose, isOpen, type, data } = useModal()
