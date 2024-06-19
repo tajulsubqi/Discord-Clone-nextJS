@@ -1,9 +1,5 @@
 "use client"
-import { useModal } from "@/hooks/use-modal-store"
-import axios from "axios"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { Button } from "../ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -11,24 +7,30 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "../ui/dialog"
+} from "@/components/ui/dialog"
+import { useModal } from "@/hooks/use-modal-store"
+import axios from "axios"
+import qs from "query-string"
+import { useState } from "react"
 
-const DeleteServerModal = () => {
-  const router = useRouter()
+export const DeleteMessageModal = () => {
   const { onClose, isOpen, type, data } = useModal()
 
-  const isModalOpen = isOpen && type === "deleteServer"
-  const { server } = data
+  const isModalOpen = isOpen && type === "deleteMessage"
+  const { apiUrl, query } = data
+
   const [isLoading, setIsLoading] = useState(false)
 
   const onClick = async () => {
     try {
       setIsLoading(true)
-      await axios.delete(`/api/servers/${server?.id}`)
+      const url = qs.stringifyUrl({
+        url: apiUrl || "",
+        query,
+      })
+      await axios.delete(url)
 
       onClose()
-      router.refresh()
-      router.push("/")
     } catch (error) {
       console.log(error)
     } finally {
@@ -41,13 +43,12 @@ const DeleteServerModal = () => {
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="px-6 pt-8">
           <DialogTitle className="text-2xl text-center font-bold">
-            Delete Server
+            Delete Message
           </DialogTitle>
 
           <DialogDescription className="text-center text-zinc-500">
             Are you sure you want to delete this? <br />
-            <span className="font-semibold text-indigo-500">{server?.name}</span> will be
-            permanently deleted.
+            The message will be permanently deleted.
           </DialogDescription>
         </DialogHeader>
 
@@ -66,5 +67,3 @@ const DeleteServerModal = () => {
     </Dialog>
   )
 }
-
-export default DeleteServerModal

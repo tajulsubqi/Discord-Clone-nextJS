@@ -1,9 +1,4 @@
 "use client"
-import { useModal } from "@/hooks/use-modal-store"
-import axios from "axios"
-import { useRouter } from "next/navigation"
-import qs from "query-string"
-import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -13,6 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { useModal } from "@/hooks/use-modal-store"
+import axios from "axios"
+import { useRouter } from "next/navigation"
+import qs from "query-string"
+import { useState } from "react"
 
 const DeleteChannelModal = () => {
   const { onClose, isOpen, type, data } = useModal()
