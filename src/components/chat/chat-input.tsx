@@ -1,17 +1,17 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Plus } from "lucide-react"
+import qs from "query-string"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Plus, Smile } from "lucide-react"
-import qs from "query-string"
 
+import { useModal } from "@/hooks/use-modal-store"
+import axios from "axios"
+import { useRouter } from "next/navigation"
+import { EmojiPicker } from "../emoji-picker"
 import { Form, FormControl, FormField, FormItem } from "../ui/form"
 import { Input } from "../ui/input"
-import axios from "axios"
-import { useModal } from "@/hooks/use-modal-store"
-import { EmojiPicker } from "../emoji-picker"
-import { useRouter } from "next/navigation"
 
 interface ChatInputProps {
   apiUrl: string
@@ -34,6 +34,8 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
       content: "",
     },
   })
+
+
 
   const isLoading = form.formState.isSubmitting
 
