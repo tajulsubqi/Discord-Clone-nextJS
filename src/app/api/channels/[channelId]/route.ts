@@ -12,12 +12,9 @@ export async function PATCH(req: Request, { params }: { params: { channelId: str
     const serverId = searchParams.get("serverId")
 
     if (!profile) return new NextResponse("Unauthorized", { status: 401 })
-
     if (!serverId) return new NextResponse("Server ID is Missing", { status: 400 })
-
     if (!params.channelId)
       return new NextResponse("Channel ID is Missing", { status: 400 })
-
     if (name === "general")
       return new NextResponse("Channel name cannot be 'general'", { status: 400 })
 
@@ -67,9 +64,7 @@ export async function DELETE(
     const serverId = searchParams.get("serverId")
 
     if (!profile) return new NextResponse("Unauthorized", { status: 401 })
-
     if (!serverId) return new NextResponse("Server ID is Missing", { status: 400 })
-
     if (!params.channelId)
       return new NextResponse("Channel ID is Missing", { status: 400 })
 
@@ -90,6 +85,9 @@ export async function DELETE(
         channels: {
           delete: {
             id: params.channelId,
+            name: {
+              not: "general",
+            },
           },
         },
       },
