@@ -23,7 +23,37 @@ Vingzcord is an innovative application that offers a communication experience si
 
 ## Demo
 
-You can see a demo of this project at [https://Vingzcord.app/](https://vingzpoke.vercel.app/).
+You can see a demo of this project at [https://vingzcord.vercel.app](https://vingzcord.vercel.app).
+
+## Screenshots
+
+<table>
+  <tr>
+    <td><img src="./public/screenshots/desk-1.png" alt="App Screenshot" width="100%"></td>
+    <td><img src="./public/screenshots/desk-2.png" alt="App Screenshot" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="./public/screenshots/desk-3.png" alt="App Screenshot" width="100%"></td>
+    <td><img src="./public/screenshots/desk-4.png" alt="App Screenshot" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="./public/screenshots/desk-7.png" alt="App Screenshot" width="100%"></td>
+    <td><img src="./public/screenshots/desk-6.png" alt="App Screenshot" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="./public/screenshots/desk-8.png" alt="App Screenshot" width="100%"></td>
+    <td><img src="./public/screenshots/desk-9.png" alt="App Screenshot" width="100%"></td>
+  </tr>
+
+   <tr>
+    <td><img src="./public/screenshots/mobile-1.png" alt="App Screenshot" width="60%"></td>
+    <td><img src="./public/screenshots/mobile-2.png" alt="App Screenshot" width="60%"></td>
+  </tr>
+   <tr>
+    <td><img src="./public/screenshots/mobile-3.png" alt="App Screenshot" width="60%"></td>
+    <td><img src="./public/screenshots/mobile-4.png" alt="App Screenshot" width="60%"></td>
+  </tr>
+</table>
 
 ## Feedback
 
